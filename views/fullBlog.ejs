@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <%- include('partials/head') %>
+    <title>
+      <%= blog.title %> | Full Blog
+    </title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-white text-gray-900 font-sans leading-relaxed">
+  <!-- Navbar -->
+  <%- include('partials/nav') %>
+
+    <!-- Blog Content -->
+    <main class="max-w-6xl mx-auto px-6 py-12">
+
+      <!-- Title -->
+      <h1 class="text-4xl md:text-5xl font-extrabold text-center mb-6">
+        <%= blog.title %>
+      </h1>
+
+      <!-- Cover Image -->
+      <div class="mb-5 rounded-xl overflow-hidden shadow-md">
+        <img src="/images/uploads/<%= blog.coverImageUrl %>" alt="Cover Image" class="w-full h-[60vh] object-cover" />
+      </div>
+
+      <!-- Body -->
+<div class="flex justify-center">
+  <article class="w-[85vw] border border-red-900 text-gray-800 my-8 rounded-lg shadow">
+    <pre class="bg-gray-100 p-6 rounded-lg overflow-x-auto whitespace-pre-wrap">
+<%= blog.body.trim() %>
+    </pre>
+  </article>
+</div>
+
+      <!-- Author Info -->
+      <div class="mt-10 text-sm text-right text-gray-600 text-xl">
+        Written by <span class="font-medium text-gray-900">
+          <%= blog.createdBy ? blog.createdBy.fullName : 'Anonymous' %>
+        </span>
+      </div>
+    </main>
+
+    <div>
+      <%- include('partials/comments') %>
+      
+    </div>
+
+
+    <!-- Footer -->
+    <footer class="mt-16 text-center text-xs text-gray-400 py-4 border-t">
+      &copy; Created by A.chetan
+    </footer>
+</body>
+
+</html>
