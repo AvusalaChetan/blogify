@@ -9,6 +9,16 @@ const cookieParser = require('cookie-parser')
 const {checkForAuthenticationCookie} = require('./middlewares/authentication')
 require('./config/connection'); 
 const blogModel = require('./models/blogModel')
+
+// Add rate limiter
+const rateLimit = require('express-rate-limit')
+const limiter = rateLimit({
+  windowMs: 1 * 60 * 1000, 
+  max: 100,
+  message: 'Too many requests, please try again later.',
+})
+app.use(limiter)
+
 //mw
 app.use(express.urlencoded({extended:true}))
 app.use(express.json())
