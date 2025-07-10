@@ -25,8 +25,6 @@ const singUpUser = async (req, res) => {
   });
   const token = createTokenForUser(user);
   res.cookie("token", token).redirect("/");
-
-  res.redirect("/");
 };
 
 // login user
